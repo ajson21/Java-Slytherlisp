@@ -38,12 +38,6 @@ class ConsListTest {
 		assertTrue(eighth.equals(seventh));
 		assertTrue(eighth.equals(sixth));	
 		
-		ConsList str1 = new ConsList("hey");
-		ConsList str2 = new ConsList("hi");
-		
-		
-		
-		
 	}
 	
 	@Test
@@ -55,8 +49,8 @@ class ConsListTest {
 		test.add(3);
 		test.add(4);
 		test.add(5);
-		
 		ConsList first = ConsList.fromIterable(test, 0);
+		
 		assertTrue(first.getCar().equals(1));
 		assertTrue(first.getCdr().getCar().equals(2));
 		assertTrue(first.getCdr().getCdr().getCar().equals(3));
@@ -70,8 +64,8 @@ class ConsListTest {
 		test2[2] = 3;
 		test2[3] = 4;
 		test2[4] = 5;
-		
 		ConsList second = ConsList.fromIterable(test2,0);
+		
 		assertTrue(second.getCar().equals(1));
 		assertTrue(second.getCdr().getCar().equals(2));
 		assertTrue(second.getCdr().getCdr().getCar().equals(3));
@@ -91,9 +85,9 @@ class ConsListTest {
 		test3.add(temp3);
 		test3.add(temp4);
 		test3.add(temp5);
-		
 		ConsList third = ConsList.fromIterable(test3, 0);
 		ConsList thirdVer2 = ConsList.fromIterable(test3, 0);
+		
 		assertTrue(third.getCar().equals(temp));
 		assertTrue(third.getCdr().getCar().equals(temp2));
 		assertTrue(third.getCdr().getCdr().getCar().equals(temp3));
@@ -114,9 +108,9 @@ class ConsListTest {
 		test4[2] = temp8;
 		test4[3] = temp9;
 		test4[4] = temp10;
-		
 		ConsList fourth = ConsList.fromIterable(test4, 0);
 		ConsList fourthVer2 = ConsList.fromIterable(test4, 0);
+		
 		assertTrue(fourth.getCar().equals(temp6));
 		assertTrue(fourth.getCdr().getCar().equals(temp7));
 		assertTrue(fourth.getCdr().getCdr().getCar().equals(temp8));
@@ -137,7 +131,6 @@ class ConsListTest {
 		test.add(3);
 		test.add(4);
 		test.add(5);
-		
 		ConsList first = ConsList.fromIterable(test, 0);
 		
 		assertTrue(first.getItem(0).equals(1));
@@ -152,8 +145,8 @@ class ConsListTest {
 		test2[2] = 3;
 		test2[3] = 4;
 		test2[4] = 5;
-		
 		ConsList second = ConsList.fromIterable(test2,0);
+		
 		assertTrue(second.getItem(0).equals(1));
 		assertTrue(second.getItem(1).equals(2));
 		assertTrue(second.getItem(2).equals(3));
@@ -161,6 +154,7 @@ class ConsListTest {
 		assertTrue(second.getItem(4).equals(5));
 		
 		ConsList third = new ConsList(4);
+		
 		assertEquals(third.getItem(0), 4);
 		
 		for(int i = 1; i <= 100; i++) {
@@ -187,10 +181,9 @@ class ConsListTest {
 		test.add(3);
 		test.add(4);
 		test.add(5);
-		
 		ConsList first = ConsList.fromIterable(test, 0);
-		
 		ArrayList<Object> firstResult = first.iterate();
+		
 		assertEquals(firstResult.size(), 5);
 		assertTrue(test.get(0).equals(firstResult.get(0)));
 		assertTrue(test.get(1).equals(firstResult.get(1)));
@@ -204,9 +197,9 @@ class ConsListTest {
 		test2[2] = 3;
 		test2[3] = 4;
 		test2[4] = 5;
-		
 		ConsList second = ConsList.fromIterable(test2,0);
 		ArrayList<Object> secondResult = second.iterate();
+		
 		assertEquals(secondResult.size(), 5);
 		assertTrue(test2[0].equals(secondResult.get(0)));
 		assertTrue(test2[1].equals(secondResult.get(1)));
@@ -225,9 +218,9 @@ class ConsListTest {
 		test.add(3);
 		test.add(4);
 		test.add(5);
-		
 		ConsList first = ConsList.fromIterable(test, 0);
 		ArrayList<Object> firstResult = first.cells();
+		
 		assertEquals(firstResult.size(), 5);
 		assertTrue(first.equals(firstResult.get(0)));
 		assertTrue(first.getCdr().equals(firstResult.get(1)));
@@ -241,15 +234,117 @@ class ConsListTest {
 		test2[2] = 3;
 		test2[3] = 4;
 		test2[4] = 5;
-		
 		ConsList second = ConsList.fromIterable(test2,0);
 		ArrayList<Object> secondResult = second.cells();
+		
 		assertEquals(secondResult.size(), 5);
 		assertTrue(second.equals(secondResult.get(0)));
 		assertTrue(second.getCdr().equals(secondResult.get(1)));
 		assertTrue(second.getCdr().getCdr().equals(secondResult.get(2)));
 		assertTrue(second.getCdr().getCdr().getCdr().equals(secondResult.get(3)));
 		assertTrue(second.getCdr().getCdr().getCdr().getCdr().equals(secondResult.get(4)));
+		
+	}
+	
+	@Test
+	void testLength() {
+		
+		ArrayList<Object> test = new ArrayList<Object>();
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		test.add(4);
+		test.add(5);
+		ConsList first = ConsList.fromIterable(test, 0);
+		
+		assertEquals(first.length(), 5);
+		
+		Object[] test2 = new Object[5];
+		test2[0] = 1;
+		test2[1] = 2;
+		test2[2] = 3;
+		test2[3] = 4;
+		test2[4] = 5;
+		ConsList second = ConsList.fromIterable(test2,0);
+		
+		assertEquals(second.length(), 5);
+		
+		ConsList third = new ConsList(0);
+		ConsList original = third;
+		
+		for(int i = 1; i < 100; i++) {
+			
+			third.setCdr(new ConsList(i));
+			third = third.getCdr();
+			
+		}
+		
+		assertEquals(original.length(), 100);
+		
+	}
+	
+	@Test
+	void testContains() {
+		
+		ArrayList<Object> test = new ArrayList<Object>();
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		test.add(4);
+		test.add(5);
+		ConsList first = ConsList.fromIterable(test, 0);
+		ConsList item1 = new ConsList(1);
+		ConsList item2 = new ConsList(2);
+		ConsList item3 = new ConsList(3);
+		ConsList item4 = new ConsList(4);
+		ConsList item5 = new ConsList(5);
+		
+		assertTrue(first.contains(item1));
+		assertTrue(first.contains(item2));
+		assertTrue(first.contains(item3));
+		assertTrue(first.contains(item4));
+		assertTrue(first.contains(item5));
+		
+		Object[] test2 = new Object[5];
+		test2[0] = 1;
+		test2[1] = 2;
+		test2[2] = 3;
+		test2[3] = 4;
+		test2[4] = 5;
+		ConsList second = ConsList.fromIterable(test2,0);
+		ConsList item6 = new ConsList(1);
+		ConsList item7 = new ConsList(2);
+		ConsList item8 = new ConsList(3);
+		ConsList item9 = new ConsList(4);
+		ConsList item10 = new ConsList(5);
+		
+		assertTrue(second.contains(item6));
+		assertTrue(second.contains(item7));
+		assertTrue(second.contains(item8));
+		assertTrue(second.contains(item9));
+		assertTrue(second.contains(item10));
+		
+	}
+	
+	@Test
+	void testReversed() {
+		
+		ArrayList<Object> test = new ArrayList<Object>();
+		test.add(1);
+		test.add(2);
+		test.add(3);
+		test.add(4);
+		test.add(5);
+		ConsList first = ConsList.fromIterable(test, 0);
+		ArrayList<Object> result = first.reversed();
+		ArrayList<Object> test2 = new ArrayList<Object>();
+		test2.add(5);
+		test2.add(4);
+		test2.add(3);
+		test2.add(2);
+		test2.add(1);
+		
+		assertEquals(result,test2);
 		
 	}
 	
