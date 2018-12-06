@@ -57,7 +57,14 @@ public class ConsList extends ConsCell{
 		
 		while(index > 0) {
 			
+			if(result.cdr == null) {
+				
+				return null;
+				
+			}
+			
 			result = result.cdr;
+			index -= 1;
 			
 		}
 		
@@ -90,6 +97,69 @@ public class ConsList extends ConsCell{
 		}
 		
 		return false;
+		
+	}
+	
+	public ArrayList<Object> iterate() {
+		
+		ArrayList<Object> result = new ArrayList<Object>();
+		ConsList temp = this;
+		
+		if(temp.car == null) {
+			
+			return result;
+			
+		}
+		
+		if(temp.cdr == null) {
+			
+			result.add(temp.car);
+			return result;
+			
+		}
+		
+		while(temp.cdr != null) {
+			
+			result.add(temp.car);
+			temp = temp.cdr;
+			
+		}
+		
+		result.add(temp.car);
+		
+		return result;
+		
+	}
+	
+	public ArrayList<Object> cells(){
+		
+		ArrayList<Object> result = new ArrayList<Object>();
+		ConsList temp = this;
+		
+		if(temp.car == null) {
+			
+			return result;
+			
+		}
+		
+		if(temp.cdr == null) {
+			
+			result.add(temp);
+			return result;
+			
+		}
+		
+		while(temp.cdr != null) {
+			
+			result.add(temp);
+			temp = temp.cdr;
+			
+		}
+		
+		result.add(temp);
+		
+		return result;
+		
 		
 	}
 
