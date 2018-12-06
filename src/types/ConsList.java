@@ -65,4 +65,48 @@ public class ConsList extends ConsCell{
 		
 	}
 	
+	public boolean equals(ConsList second) {
+		
+		if(this.getCdr() != null && second.getCdr() != null) {
+			
+			if(this.getCdr() instanceof ConsList && second.getCdr() instanceof ConsList) {
+				
+				if(this.getCar().equals(this.getCar())){
+
+					return this.getCdr().equals(second.getCdr());
+					
+				} 
+				
+				return false;
+				
+			}
+			
+		}
+		
+		if(this.getCar().equals(second.getCar())) {
+			
+			return true;
+			
+		}
+		
+		return false;
+		
+	}
+
+	public Object getCar() {
+		return car;
+	}
+
+	public void setCar(Object car) {
+		this.car = car;
+	}
+
+	public ConsList getCdr() {
+		return cdr;
+	}
+
+	public void setCdr(ConsList cdr) {
+		this.cdr = cdr;
+	}
+	
 }
