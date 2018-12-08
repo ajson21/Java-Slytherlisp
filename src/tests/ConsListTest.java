@@ -7,6 +7,7 @@ import java.util.Vector;
 
 import org.junit.jupiter.api.Test;
 
+import types.BuiltIn;
 import types.ConsList;
 import types.Parser;
 
@@ -350,6 +351,7 @@ class ConsListTest {
 		
 	}
 
+
 	@Test
 	void testParsed() {
 
@@ -377,6 +379,19 @@ class ConsListTest {
 		temp.add(")");
 		temp.add(")");
 		assertEquals(check,temp);
+	}
+
+	@Test
+	void testAdd() {
+
+		BuiltIn b = new BuiltIn();
+		Vector check = new Vector();
+		check.add(1);
+		Number test = b.add(check);
+//		assertEquals(test,1.0);
+		check.add(2);
+		Number test1 = b.add(check);
+//		assertEquals(test1,3.0);
 	}
 	
 }
