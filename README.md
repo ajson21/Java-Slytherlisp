@@ -16,7 +16,7 @@ The current types include:
 Test cases are also being developed along with the Slytherlisp implementation. 
 This is to ensure that functionality is correct and valid. 
 The current tests include:
-ConsList
-- All methods within ConsList
-- Due to inheritence, works also for SExpression
+- ConsList
+  - All methods within ConsList
+  - Due to inheritence, works also for SExpression
 
