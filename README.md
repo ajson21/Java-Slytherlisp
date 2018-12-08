@@ -12,6 +12,7 @@ The current types include:
 - Symbol
 - UserFunction
 - Variable
+- Parser
 
 Test cases are also being developed along with the Slytherlisp implementation. 
 This is to ensure that functionality is correct and valid. 
