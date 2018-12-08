@@ -3,10 +3,12 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import org.junit.jupiter.api.Test;
 
 import types.ConsList;
+import types.Parser;
 
 class ConsListTest {
 
@@ -346,6 +348,35 @@ class ConsListTest {
 		
 		assertEquals(result,test2);
 		
+	}
+
+	@Test
+	void testParsed() {
+
+		String line = "(define (do-123 fun) \n (map fun '(1 2 3.0))) \n";
+		Parser p = new Parser();
+		Vector check = new Vector();
+		check = p.Parsestr(line);
+		System.out.println(check);
+		Vector temp = new Vector();
+		temp.add("(");
+		temp.add("define");
+		temp.add("(");
+		temp.add("do-123");
+		temp.add("fun");
+		temp.add(")");
+		temp.add("(");
+		temp.add("map");
+		temp.add("fun");
+		temp.add("'");
+		temp.add("(");
+		temp.add("1");
+		temp.add("2");
+		temp.add("3.0");
+		temp.add(")");
+		temp.add(")");
+		temp.add(")");
+		assertEquals(check,temp);
 	}
 	
 }
